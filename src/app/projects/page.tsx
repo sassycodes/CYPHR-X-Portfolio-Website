@@ -29,6 +29,14 @@ const projects = [
         span: "col-span-1",
         status: "IN DEV",
     },
+    {
+        title: "TrustChain",
+        description:
+            "Digital verification platform that prevents criminals from escaping justice by claiming real evidence is an \"AI deepfake.\" Mathematically proves media authenticity, locks the proof in a digital vault, and generates legally binding reports.",
+        tech: ["React", "FastAPI", "AI", "Blockchain"],
+        span: "col-span-2",
+        status: "SHIPPED",
+    },
 ];
 
 const containerVariants = {
