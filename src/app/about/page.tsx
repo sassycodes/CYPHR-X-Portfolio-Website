@@ -5,7 +5,7 @@ import NeuralNetwork from "@/components/neural-network";
 
 export default function AboutPage() {
     return (
-        <div className="min-h-screen pt-24 pb-10 px-6">
+        <div className="min-h-screen pt-24 pb-10 px-4 sm:px-6">
             <div className="max-w-6xl mx-auto">
                 {/* Page header */}
                 <motion.div

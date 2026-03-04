@@ -136,28 +136,31 @@ const CATEGORY_CHILDREN: Record<string, string[]> = {
 };
 
 // ─── Force simulation helpers ───────────────────────────
+function getIsMobile(): boolean {
+    return typeof window !== "undefined" && window.innerWidth < 768;
+}
+
 function initNodes(width: number, height: number): NeuralNode[] {
     const cx = width / 2;
     const cy = height / 2;
-    const catRadius = Math.min(width, height) * 0.28; // category orbit radius
-    const leafRadius = Math.min(width, height) * 0.15; // leaf offset from category
+    const isMobile = width < 768;
+    const catRadius = Math.min(width, height) * (isMobile ? 0.24 : 0.28);
+    const leafRadius = Math.min(width, height) * (isMobile ? 0.12 : 0.15);
+    const scaleFactor = isMobile ? 0.7 : 1;
 
     return NODE_DATA.map((nd) => {
         let x = cx;
         let y = cy;
 
         if (nd.id === "cyphr") {
-            // Pin to center
             x = cx;
             y = cy;
         } else if (nd.group === "category") {
-            // Place categories in a circle around center
             const idx = CATEGORY_IDS.indexOf(nd.id);
             const angle = (idx / CATEGORY_IDS.length) * Math.PI * 2 - Math.PI / 2;
             x = cx + Math.cos(angle) * catRadius;
             y = cy + Math.sin(angle) * catRadius;
         } else if (nd.group === "leaf") {
-            // Place leaves near their parent category
             for (const [catId, children] of Object.entries(CATEGORY_CHILDREN)) {
                 const childIdx = children.indexOf(nd.id);
                 if (childIdx >= 0) {
@@ -173,7 +176,7 @@ function initNodes(width: number, height: number): NeuralNode[] {
             }
         }
 
-        return { ...nd, x, y, vx: 0, vy: 0 };
+        return { ...nd, x, y, vx: 0, vy: 0, radius: nd.radius * scaleFactor };
     });
 }
 
@@ -205,7 +208,8 @@ export default function NeuralNetwork() {
         const resize = () => {
             const container = containerRef.current;
             const w = container ? container.clientWidth : window.innerWidth - 48;
-            const h = Math.max(550, window.innerHeight - 200);
+            const isMobile = window.innerWidth < 768;
+            const h = Math.max(isMobile ? 400 : 550, window.innerHeight - 200);
             setDimensions({ w, h });
             // Re-init nodes on first load or if they haven't been created
             if (nodesRef.current.length === 0) {
@@ -260,10 +264,11 @@ export default function NeuralNetwork() {
             const dx = b.x - a.x;
             const dy = b.y - a.y;
             const dist = Math.max(Math.sqrt(dx * dx + dy * dy), 1);
-            // Core-to-category: 250px, category-to-leaf: 150px, cross-links: 120px
-            let targetDist = 120;
-            if (a.group === "core" || b.group === "core") targetDist = 250;
-            else if (a.group === "category" || b.group === "category") targetDist = 150;
+            // Core-to-category, category-to-leaf, cross-links — scale on mobile
+            const isMobile = getIsMobile();
+            let targetDist = isMobile ? 80 : 120;
+            if (a.group === "core" || b.group === "core") targetDist = isMobile ? 160 : 250;
+            else if (a.group === "category" || b.group === "category") targetDist = isMobile ? 100 : 150;
             const force = (dist - targetDist) * 0.004;
 
             a.vx += (dx / dist) * force;
@@ -480,18 +485,68 @@ export default function NeuralNetwork() {
         setTooltip(null);
     }, []);
 
+    // Touch handlers for mobile
+    const getTouchPos = useCallback((e: React.TouchEvent<HTMLCanvasElement>): { x: number; y: number } | null => {
+        const rect = canvasRef.current?.getBoundingClientRect();
+        if (!rect || !e.touches[0]) return null;
+        return {
+            x: e.touches[0].clientX - rect.left,
+            y: e.touches[0].clientY - rect.top,
+        };
+    }, []);
+
+    const handleTouchStart = useCallback((e: React.TouchEvent<HTMLCanvasElement>) => {
+        const pos = getTouchPos(e);
+        if (!pos) return;
+        const node = getNodeAt(pos.x, pos.y);
+        if (node) {
+            e.preventDefault();
+            dragRef.current = node.id;
+            hoveredRef.current = node.id;
+            if (node.description) {
+                setTooltip({ x: pos.x, y: pos.y, label: node.label, desc: node.description });
+            }
+        }
+    }, [getNodeAt, getTouchPos]);
+
+    const handleTouchMove = useCallback((e: React.TouchEvent<HTMLCanvasElement>) => {
+        const pos = getTouchPos(e);
+        if (!pos) return;
+        if (dragRef.current) {
+            e.preventDefault();
+            const node = nodesRef.current.find((n) => n.id === dragRef.current);
+            if (node) {
+                node.x = pos.x;
+                node.y = pos.y;
+                node.vx = 0;
+                node.vy = 0;
+            }
+        }
+    }, [getTouchPos]);
+
+    const handleTouchEnd = useCallback(() => {
+        dragRef.current = null;
+        setTimeout(() => {
+            hoveredRef.current = null;
+            setTooltip(null);
+        }, 1500);
+    }, []);
+
     return (
         <div ref={containerRef} className="relative w-full" style={{ height: dimensions.h }}>
             <canvas
                 ref={canvasRef}
                 width={dimensions.w}
                 height={dimensions.h}
-                style={{ width: "100%", height: dimensions.h }}
+                style={{ width: "100%", height: dimensions.h, touchAction: "pan-y" }}
                 className="cursor-crosshair"
                 onMouseMove={handleMouseMove}
                 onMouseDown={handleMouseDown}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseLeave}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
             />
 
             {/* Tooltip */}
@@ -499,7 +554,7 @@ export default function NeuralNetwork() {
                 <div
                     className="absolute pointer-events-none z-20 glass rounded-lg px-3 py-2 max-w-[200px]"
                     style={{
-                        left: tooltip.x + 16,
+                        left: Math.min(tooltip.x + 16, dimensions.w - 220),
                         top: tooltip.y - 10,
                         transform: "translateY(-50%)",
                     }}

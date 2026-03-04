@@ -56,8 +56,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-6 pt-20">
-      <Card className="w-full max-w-7xl h-[600px] md:h-[700px] bg-black/[0.96] border-zinc-800/60 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 pt-20">
+      <Card className="w-full max-w-7xl min-h-[420px] md:h-[700px] bg-black/[0.96] border-zinc-800/60 relative overflow-hidden">
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
           fill="#10B981"
@@ -69,13 +69,13 @@ export default function Home() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex-1 p-8 md:p-12 lg:p-16 relative z-10 flex flex-col justify-center"
+            className="flex-1 p-5 sm:p-8 md:p-12 lg:p-16 relative z-10 flex flex-col justify-center"
           >
             {/* Status badge with greeting */}
-            <motion.div variants={itemVariants} className="mb-6">
-              <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5">
+            <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
+              <div className="inline-flex items-center gap-2 glass rounded-full px-3 sm:px-4 py-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-mono text-xs text-zinc-400 tracking-wider">
+                <span className="font-mono text-[10px] sm:text-xs text-zinc-400 tracking-wider">
                   {greeting} · SYSTEM ONLINE
                 </span>
               </div>
@@ -83,7 +83,7 @@ export default function Home() {
 
             {/* Main heading — matrix decode toggle */}
             <motion.div variants={itemVariants}>
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-mono leading-[0.95] tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold font-mono leading-[0.95] tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
                 <MatrixText
                   text={showAlias ? "CYPHR" : "SARTHAK"}
                   letterAnimationDuration={400}
@@ -95,13 +95,13 @@ export default function Home() {
             {/* Divider */}
             <motion.div
               variants={itemVariants}
-              className="w-16 h-px bg-gradient-to-r from-emerald-500/60 to-transparent my-6"
+              className="w-16 h-px bg-gradient-to-r from-emerald-500/60 to-transparent my-4 sm:my-6"
             />
 
             {/* Subtitle — typing terminal effect */}
             <motion.div
               variants={itemVariants}
-              className="font-mono text-sm md:text-base text-neutral-400 max-w-md leading-relaxed tracking-wide"
+              className="font-mono text-xs sm:text-sm md:text-base text-neutral-400 max-w-md leading-relaxed tracking-wide"
             >
               <span className="text-emerald-500/70 mr-1">{">"}</span>
               <TypingText
@@ -112,12 +112,12 @@ export default function Home() {
             </motion.div>
 
             {/* CTA Button */}
-            <motion.div variants={itemVariants} className="mt-8">
+            <motion.div variants={itemVariants} className="mt-6 sm:mt-8">
               <a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glow-button inline-flex items-center gap-2 rounded-lg px-6 py-3 font-mono text-sm text-zinc-300 hover:text-white transition-colors duration-300 bg-transparent"
+                className="glow-button inline-flex items-center gap-2 rounded-lg px-5 sm:px-6 py-2.5 sm:py-3 font-mono text-xs sm:text-sm text-zinc-300 hover:text-white transition-colors duration-300 bg-transparent"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Resume</span>
@@ -125,12 +125,17 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Right content — Spline 3D Robot */}
-          <div className="flex-1 relative">
+          {/* Right content — Spline 3D Robot (hidden on mobile) */}
+          <div className="hidden md:block flex-1 relative">
             <SplineScene
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
               className="w-full h-full"
             />
+          </div>
+
+          {/* Mobile fallback glow (shown only on mobile) */}
+          <div className="md:hidden absolute bottom-0 right-0 w-40 h-40 pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-radial from-emerald-500/10 via-emerald-500/5 to-transparent rounded-full blur-3xl" />
           </div>
         </div>
       </Card>

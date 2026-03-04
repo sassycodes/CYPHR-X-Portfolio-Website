@@ -61,14 +61,14 @@ export default function StatsBar() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full max-w-3xl mx-auto mt-16 grid grid-cols-3 gap-4"
+            className="w-full max-w-3xl mx-auto mt-10 sm:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4"
         >
             {stats.map((stat) => (
                 <div
                     key={stat.label}
-                    className="glass-card rounded-lg px-4 py-5 text-center group hover:border-emerald-500/20 transition-all duration-300"
+                    className="glass-card rounded-lg px-4 py-4 sm:py-5 text-center group hover:border-emerald-500/20 transition-all duration-300"
                 >
-                    <div className="font-mono text-2xl md:text-3xl font-bold text-white mb-1">
+                    <div className="font-mono text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1">
                         {stat.textValue ? (
                             <span>{stat.textValue}<span className="text-xs font-normal text-zinc-500">{stat.suffix}</span></span>
                         ) : (

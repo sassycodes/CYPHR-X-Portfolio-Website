@@ -148,7 +148,7 @@ function TimelineNode({
                 : "border-zinc-800/40";
 
     return (
-        <div ref={ref} className="relative flex gap-6 md:gap-10 pb-16 last:pb-0">
+        <div ref={ref} className="relative flex gap-4 md:gap-10 pb-12 md:pb-16 last:pb-0">
             {/* Node dot on timeline */}
             <div className="relative flex flex-col items-center shrink-0">
                 {/* Animated dot */}
@@ -301,7 +301,7 @@ export default function AcademicPage() {
     const progressHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
     return (
-        <div className="min-h-screen pt-24 pb-20 px-6">
+        <div className="min-h-screen pt-24 pb-20 px-4 sm:px-6">
             <div className="max-w-4xl mx-auto">
                 {/* Page header — Boot sequence style */}
                 <motion.div

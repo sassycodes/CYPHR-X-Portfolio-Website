@@ -57,7 +57,7 @@ const itemVariants = {
 
 export default function ProjectsPage() {
     return (
-        <div className="min-h-screen pt-24 pb-20 px-6">
+        <div className="min-h-screen pt-24 pb-20 px-4 sm:px-6">
             <div className="max-w-6xl mx-auto">
                 {/* Page header */}
                 <motion.div
@@ -97,7 +97,7 @@ export default function ProjectsPage() {
                         <motion.div
                             key={project.title}
                             variants={itemVariants}
-                            className={`${project.span} md:${project.span}`}
+                            className={project.span === "col-span-2" ? "lg:col-span-2" : ""}
                         >
                             <ProjectCard {...project} />
                         </motion.div>
