@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Download } from "lucide-react";
+import { toast } from "sonner";
 import { SplineScene } from "@/components/ui/splite";
 import { Card } from "@/components/ui/card";
 import { Spotlight } from "@/components/ui/spotlight";
@@ -113,15 +114,13 @@ export default function Home() {
 
             {/* CTA Button */}
             <motion.div variants={itemVariants} className="mt-6 sm:mt-8">
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => toast("Resume unavailable: will be updated soon")}
                 className="glow-button inline-flex items-center gap-2 rounded-lg px-5 sm:px-6 py-2.5 sm:py-3 font-mono text-xs sm:text-sm text-zinc-300 hover:text-white transition-colors duration-300 bg-transparent"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Resume</span>
-              </a>
+              </button>
             </motion.div>
           </motion.div>
 
