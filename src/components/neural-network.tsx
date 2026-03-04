@@ -30,109 +30,156 @@ const NODE_DATA: Omit<NeuralNode, "x" | "y" | "vx" | "vy">[] = [
     // Central
     { id: "cyphr", label: "CYPHR", group: "core", radius: 40, color: "#10B981", glowColor: "#10B981", description: "The Central Processing Unit" },
 
-    // Category nodes — 7 clusters
-    { id: "compete", label: "COMPETE", group: "category", radius: 22, color: "#10B981", glowColor: "#10B981" },
-    { id: "build", label: "BUILD", group: "category", radius: 22, color: "#10B981", glowColor: "#10B981" },
-    { id: "explore", label: "EXPLORE", group: "category", radius: 22, color: "#10B981", glowColor: "#10B981" },
-    { id: "learn", label: "LEARN", group: "category", radius: 22, color: "#10B981", glowColor: "#10B981" },
-    { id: "craft", label: "CRAFT", group: "category", radius: 22, color: "#10B981", glowColor: "#10B981" },
-    { id: "curious", label: "CURIOUS", group: "category", radius: 22, color: "#10B981", glowColor: "#10B981" },
-    { id: "beyond", label: "BEYOND", group: "category", radius: 22, color: "#10B981", glowColor: "#10B981" },
+    // Category nodes — 8 clusters
+    { id: "languages", label: "LANGUAGES", group: "category", radius: 24, color: "#10B981", glowColor: "#10B981" },
+    { id: "backend", label: "BACKEND", group: "category", radius: 24, color: "#10B981", glowColor: "#10B981" },
+    { id: "frontend", label: "FRONTEND", group: "category", radius: 24, color: "#10B981", glowColor: "#10B981" },
+    { id: "data_ai", label: "DATA & AI", group: "category", radius: 24, color: "#10B981", glowColor: "#10B981" },
+    { id: "database", label: "DATABASE", group: "category", radius: 24, color: "#10B981", glowColor: "#10B981" },
+    { id: "tools", label: "TOOLS", group: "category", radius: 24, color: "#10B981", glowColor: "#10B981" },
+    { id: "research", label: "RESEARCH", group: "category", radius: 24, color: "#10B981", glowColor: "#10B981" },
+    { id: "interests", label: "INTERESTS", group: "category", radius: 24, color: "#10B981", glowColor: "#10B981" },
 
-    // COMPETE — grind & glory
-    { id: "hackathons", label: "Hackathons", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "6+ hackathons and counting" },
-    { id: "ideathons", label: "Ideathons", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "TrustAI Ideathon — Top 20/273" },
-    { id: "leetcode", label: "LeetCode Sprint", group: "leaf", radius: 10, color: "#6EE7B7", glowColor: "#10B981", description: "Currently on a DSA grind" },
+    // LANGUAGES
+    { id: "cpp", label: "C++ & C", group: "leaf", radius: 14, color: "#6EE7B7", glowColor: "#10B981", description: "The Builder's Bread and Butter — sockets, networking" },
+    { id: "python", label: "Python", group: "leaf", radius: 14, color: "#6EE7B7", glowColor: "#10B981", description: "Primary tool for AI/ML and rapid prototyping" },
+    { id: "js_ts", label: "JS / TypeScript", group: "leaf", radius: 13, color: "#6EE7B7", glowColor: "#10B981", description: "Extensive web development stack" },
+    { id: "java_kotlin", label: "Java / Kotlin", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "Mobile components & Android dev" },
+    { id: "bash", label: "Bash / Shell", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Automation & terminal workflows" },
 
-    // BUILD — shipping code
-    { id: "sysprog", label: "Systems Programming", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "C/C++, raw sockets, encryption tunnels" },
-    { id: "ai-pipe", label: "AI Pipelines", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "n8n + Gemini + Veo orchestration" },
-    { id: "ai-agents", label: "AI Agents", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Building autonomous agents from scratch" },
+    // BACKEND
+    { id: "fastapi", label: "FastAPI", group: "leaf", radius: 14, color: "#6EE7B7", glowColor: "#10B981", description: "High-performance APIs (TrustChain, CogniTrust)" },
+    { id: "nodejs", label: "Node.js & Express", group: "leaf", radius: 13, color: "#6EE7B7", glowColor: "#10B981", description: "Backend logic and server architecture" },
+    { id: "socketio", label: "Socket.io", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Real-time bidirectional networking" },
 
-    // EXPLORE — poking at everything
-    { id: "cybersec", label: "Cybersecurity", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Offense, defense, everything between" },
-    { id: "kernel", label: "Kernel Hacking", group: "leaf", radius: 10, color: "#6EE7B7", glowColor: "#10B981", description: "Going below userspace" },
-    { id: "ai-tools", label: "AI Tool Testing", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "First to try every new AI tool that drops" },
+    // FRONTEND
+    { id: "nextjs", label: "Next.js & React", group: "leaf", radius: 14, color: "#6EE7B7", glowColor: "#10B981", description: "Modern, SEO-friendly, scalable UIs" },
+    { id: "tailwind", label: "Tailwind CSS", group: "leaf", radius: 13, color: "#6EE7B7", glowColor: "#10B981", description: "Minimalist, aesthetic utility styling" },
+    { id: "framer", label: "Framer Motion", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Physics-based animations and layout transitions" },
 
-    // LEARN — absorbing knowledge
-    { id: "deeptech", label: "Deep Tech Startups", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Tracking the next wave" },
-    { id: "litreview", label: "Literature Reviews", group: "leaf", radius: 10, color: "#6EE7B7", glowColor: "#10B981", description: "Independent research deep dives" },
-    { id: "papers", label: "Research Papers", group: "leaf", radius: 10, color: "#6EE7B7", glowColor: "#10B981", description: "Reading & dissecting papers" },
+    // DATA & AI
+    { id: "pytorch", label: "TensorFlow / PyTorch", group: "leaf", radius: 14, color: "#6EE7B7", glowColor: "#10B981", description: "Neural classifiers & image segregation pipelines" },
+    { id: "teachable", label: "Google Teachable Machine", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "Practical AI & quick model prototyping" },
+    { id: "agents", label: "AI Agents (n8n)", group: "leaf", radius: 13, color: "#6EE7B7", glowColor: "#10B981", description: "Automated workflows and LLM orchestration" },
+    { id: "prompt_eng", label: "Structured Prompts", group: "leaf", radius: 13, color: "#6EE7B7", glowColor: "#10B981", description: "Contextually structured prompt engineering" },
 
-    // CRAFT — the art of prompts & words
-    { id: "vibecoding", label: "Vibe Coding", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Claude, Antigravity, Gemini — daily drivers" },
-    { id: "prompts", label: "Prompt Engineering", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "Contextual phrasing & structured prompts" },
-    { id: "blog", label: "Blog (Launching Soon)", group: "leaf", radius: 10, color: "#6EE7B7", glowColor: "#10B981", description: "Documenting the chaos — coming soon" },
+    // DATABASE
+    { id: "mongodb", label: "MongoDB", group: "leaf", radius: 13, color: "#6EE7B7", glowColor: "#10B981", description: "Flexible NoSQL data handling" },
+    { id: "supabase", label: "Supabase", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Postgres, Auth, and Realtime BaaS" },
+    { id: "firebase", label: "Firebase", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Quick prototyping backend & data stores" },
 
-    // CURIOUS — intellectual rabbit holes
-    { id: "psychology", label: "Psychology", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "How minds work, why people tick" },
-    { id: "geopol", label: "Geopolitics & History", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "Power, borders, and the stories behind them" },
-    { id: "space", label: "Space", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "The final frontier, always looking up" },
+    // TOOLS (The Vibe Stack)
+    { id: "git", label: "Git / GitHub", group: "leaf", radius: 13, color: "#6EE7B7", glowColor: "#10B981", description: "Version control and open-source collaboration" },
+    { id: "nmap", label: "Nmap", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "Network mapping and security audits" },
+    { id: "vim_arch", label: "Vim & Arch Linux", group: "leaf", radius: 13, color: "#6EE7B7", glowColor: "#10B981", description: "Terminal-centric power user environment" },
+    { id: "docker", label: "Docker", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Containerization and local environments" },
+    { id: "claude", label: "Claude", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "AI Pair Programming" },
+    { id: "cursor", label: "Cursor", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "AI IDE of choice" },
+    { id: "v0", label: "v0.dev", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "Generative UI" },
+    { id: "antigravity", label: "Antigravity", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Advanced Agentic Coding Partner" },
 
-    // BEYOND — the offline life
-    { id: "manga", label: "Manga", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Niche collections, always reading" },
-    { id: "books", label: "Books", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "Non-fiction, sci-fi, whatever catches the eye" },
-    { id: "rabbitholes", label: "Rabbit Holes", group: "leaf", radius: 10, color: "#6EE7B7", glowColor: "#10B981", description: "3 AM Wikipedia spirals about everything" },
+    // RESEARCH
+    { id: "litreview", label: "Literature Reviews", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "Independent research and deep dives into academic papers" },
+    { id: "lfcc", label: "LFCC", group: "leaf", radius: 13, color: "#6EE7B7", glowColor: "#10B981", description: "Linear Frequency Cepstral Coefficients" },
+    { id: "bispectrum", label: "Bispectrum Analysis", group: "leaf", radius: 13, color: "#6EE7B7", glowColor: "#10B981", description: "Higher-order spectral analysis and signal processing" },
+
+    // INTERESTS
+    { id: "anime", label: "Anime & Manga", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "Always watching, always reading" },
+    { id: "reading", label: "Reading", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "Absorbing knowledge in physical format" },
+    { id: "blogging", label: "Blogging", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "Writing about tech (site launching soon!)" },
+    { id: "useless_stuff", label: "Building Useless Stuff", group: "leaf", radius: 11, color: "#6EE7B7", glowColor: "#10B981", description: "Creating for the sake of creating" },
+    { id: "emerging_ai", label: "Emerging AI Tech", group: "leaf", radius: 12, color: "#6EE7B7", glowColor: "#10B981", description: "First to try every new model and agent" },
 ];
 
 const CONNECTIONS_DATA: [string, string][] = [
     // Core → Categories
-    ["cyphr", "compete"],
-    ["cyphr", "build"],
-    ["cyphr", "explore"],
-    ["cyphr", "learn"],
-    ["cyphr", "craft"],
-    ["cyphr", "curious"],
-    ["cyphr", "beyond"],
-    // COMPETE
-    ["compete", "hackathons"],
-    ["compete", "ideathons"],
-    ["compete", "leetcode"],
-    // BUILD
-    ["build", "sysprog"],
-    ["build", "ai-pipe"],
-    ["build", "ai-agents"],
-    // EXPLORE
-    ["explore", "cybersec"],
-    ["explore", "kernel"],
-    ["explore", "ai-tools"],
-    // LEARN
-    ["learn", "deeptech"],
-    ["learn", "litreview"],
-    ["learn", "papers"],
-    // CRAFT
-    ["craft", "vibecoding"],
-    ["craft", "prompts"],
-    ["craft", "blog"],
-    // CURIOUS
-    ["curious", "psychology"],
-    ["curious", "geopol"],
-    ["curious", "space"],
-    // BEYOND
-    ["beyond", "manga"],
-    ["beyond", "books"],
-    ["beyond", "rabbitholes"],
-    // Cross-connections — the neural links between interests
-    ["vibecoding", "ai-agents"],      // vibe coding feeds into building agents
-    ["ai-tools", "prompts"],          // testing tools ↔ crafting prompts
-    ["books", "psychology"],          // reading connects to understanding minds
-    ["leetcode", "sysprog"],          // DSA grind feeds systems work
-    ["ai-pipe", "deeptech"],          // pipelines ↔ deep tech
-    ["cybersec", "kernel"],           // security ↔ low-level
-    ["geopol", "litreview"],          // geopolitics research
-    ["ai-agents", "ai-tools"],        // building agents ↔ testing tools
+    ["cyphr", "languages"],
+    ["cyphr", "backend"],
+    ["cyphr", "frontend"],
+    ["cyphr", "data_ai"],
+    ["cyphr", "database"],
+    ["cyphr", "tools"],
+    ["cyphr", "research"],
+    ["cyphr", "interests"],
+
+    // LANGUAGES
+    ["languages", "cpp"],
+    ["languages", "python"],
+    ["languages", "js_ts"],
+    ["languages", "java_kotlin"],
+    ["languages", "bash"],
+
+    // BACKEND
+    ["backend", "fastapi"],
+    ["backend", "nodejs"],
+    ["backend", "socketio"],
+
+    // FRONTEND
+    ["frontend", "nextjs"],
+    ["frontend", "tailwind"],
+    ["frontend", "framer"],
+
+    // DATA & AI
+    ["data_ai", "pytorch"],
+    ["data_ai", "teachable"],
+    ["data_ai", "agents"],
+    ["data_ai", "prompt_eng"],
+
+    // DATABASE
+    ["database", "mongodb"],
+    ["database", "supabase"],
+    ["database", "firebase"],
+
+    // TOOLS
+    ["tools", "git"],
+    ["tools", "nmap"],
+    ["tools", "vim_arch"],
+    ["tools", "docker"],
+    ["tools", "claude"],
+    ["tools", "cursor"],
+    ["tools", "v0"],
+    ["tools", "antigravity"],
+
+    // RESEARCH
+    ["research", "litreview"],
+    ["research", "lfcc"],
+    ["research", "bispectrum"],
+
+    // INTERESTS
+    ["interests", "anime"],
+    ["interests", "reading"],
+    ["interests", "blogging"],
+    ["interests", "useless_stuff"],
+    ["interests", "emerging_ai"],
+
+    // Cross-connections — how the stack interacts
+    ["python", "fastapi"],          // Python powers FastAPI
+    ["python", "pytorch"],          // Python powers ML
+    ["js_ts", "nextjs"],            // TS powers Next.js
+    ["js_ts", "nodejs"],            // JS powers Node
+    ["nextjs", "tailwind"],         // Next integrates with Tailwind
+    ["nextjs", "framer"],           // Next uses Framer for UI
+    ["bash", "vim_arch"],           // Shell powers Linux workflow
+    ["cpp", "nmap"],                // Low-level connects to networking tools
+    ["fastapi", "supabase"],        // Backend to Database
+    ["nodejs", "mongodb"],          // Backend to Database
+    ["python", "lfcc"],             // Python likely used for signal processing research
+    ["python", "bispectrum"],       // Python likely used for bispectrum analysis
+    ["emerging_ai", "claude"],      // Interacts with Claude as emerging tech
+    ["emerging_ai", "prompt_eng"],  // Uses prompt eng to control emerging AI
 ];
 
 // Category IDs for circular pre-positioning
-const CATEGORY_IDS = ["compete", "build", "explore", "learn", "craft", "curious", "beyond"];
+const CATEGORY_IDS = ["languages", "backend", "frontend", "data_ai", "database", "tools", "research", "interests"];
 const CATEGORY_CHILDREN: Record<string, string[]> = {
-    compete: ["hackathons", "ideathons", "leetcode"],
-    build: ["sysprog", "ai-pipe", "ai-agents"],
-    explore: ["cybersec", "kernel", "ai-tools"],
-    learn: ["deeptech", "litreview", "papers"],
-    craft: ["vibecoding", "prompts", "blog"],
-    curious: ["psychology", "geopol", "space"],
-    beyond: ["manga", "books", "rabbitholes"],
+    languages: ["cpp", "python", "js_ts", "java_kotlin", "bash"],
+    backend: ["fastapi", "nodejs", "socketio"],
+    frontend: ["nextjs", "tailwind", "framer"],
+    data_ai: ["pytorch", "teachable", "agents", "prompt_eng"],
+    database: ["mongodb", "supabase", "firebase"],
+    tools: ["git", "nmap", "vim_arch", "docker", "claude", "cursor", "v0", "antigravity"],
+    research: ["litreview", "lfcc", "bispectrum"],
+    interests: ["anime", "reading", "blogging", "useless_stuff", "emerging_ai"],
 };
 
 // ─── Force simulation helpers ───────────────────────────
@@ -230,14 +277,14 @@ export default function NeuralNetwork() {
         const cy = h / 2;
 
         for (const node of nodes) {
-            // CYPHR: very strong center lock
+            // CYPHR: very strong center lock, but with lower velocity multiplier to prevent jitter
             if (node.id === "cyphr") {
-                node.vx += (cx - node.x) * 0.08;
-                node.vy += (cy - node.y) * 0.08;
+                node.vx += (cx - node.x) * 0.02;
+                node.vy += (cy - node.y) * 0.02;
             } else {
                 // Others: gentle center pull to prevent drift
-                node.vx += (cx - node.x) * 0.001;
-                node.vy += (cy - node.y) * 0.001;
+                node.vx += (cx - node.x) * 0.003;
+                node.vy += (cy - node.y) * 0.003;
             }
 
             // Repulsion between all nodes — stronger force, bigger min distance
@@ -246,9 +293,14 @@ export default function NeuralNetwork() {
                 const dx = node.x - other.x;
                 const dy = node.y - other.y;
                 const dist = Math.max(Math.sqrt(dx * dx + dy * dy), 1);
-                const minDist = (node.radius + other.radius) * 4;
+
+                // Allow closer proximity before repulsion, specifically for the larger central node
+                const minDist = (node.radius + other.radius) * 2.5;
+
                 if (dist < minDist) {
-                    const force = ((minDist - dist) / dist) * 0.8;
+                    // Reduce the repulsion force dramatically for the CYPHR node so it doesn't bounce around
+                    const forceMultiplier = node.id === "cyphr" ? 0.1 : 0.8;
+                    const force = ((minDist - dist) / dist) * forceMultiplier;
                     node.vx += dx * force;
                     node.vy += dy * force;
                 }

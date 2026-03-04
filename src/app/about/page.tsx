@@ -24,12 +24,12 @@ export default function AboutPage() {
                         </span>
                     </div>
                     <h1 className="font-mono text-4xl sm:text-5xl font-bold text-white tracking-tight">
-                        Neural Map
+                        What&apos;s Cooking Up in My Brain?
                     </h1>
                     <p className="font-mono text-sm text-zinc-500 mt-3 max-w-lg">
                         <span className="text-emerald-500/50 mr-1">{">"}</span>
-                        Everything that lives inside my head — mapped, connected, alive.
-                        Drag nodes to explore. Hover for details.
+                        A live feed of the technologies, rabbit holes, and research I&apos;m currently obsessed with.
+                        Drag the nodes to explore the connections. Hover for details.
                     </p>
                 </motion.div>
 
