@@ -21,7 +21,7 @@ const socials = [
     },
     {
         name: "LinkedIn",
-        href: "https://www.linkedin.com/in/sarthak-gaikwad-23496b379",
+        href: "https://www.linkedin.com/in/sarthak-gaikwad-dev",
         icon: Linkedin,
     },
     {
