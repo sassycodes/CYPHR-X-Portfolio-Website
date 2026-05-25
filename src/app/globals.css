@@ -205,3 +205,21 @@ body {
     transform: rotate(360deg);
   }
 }
+
+/* ========================
+   BADGE — TOP 800 (PURPLE)
+   ======================== */
+.badge-top800 {
+  color: #a855f7;
+  background-color: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* ========================
+   PROJECT CARD LINK WRAPPER
+   ======================== */
+.project-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}

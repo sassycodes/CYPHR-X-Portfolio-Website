@@ -11,8 +11,8 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-    { label: "Hackathons", value: 6, suffix: "+" },
-    { label: "Projects Shipped", value: 3 },
+    { label: "Hackathons", value: 8, suffix: "+" },
+    { label: "Projects Shipped", value: 4, suffix: "+" },
     { label: "Coffees Consumed", textValue: "idk", suffix: " (not many tho)" },
 ];
 

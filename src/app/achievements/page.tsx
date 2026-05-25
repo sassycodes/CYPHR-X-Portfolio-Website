@@ -5,6 +5,15 @@ import { Shield, Trophy, Code, Cpu, Zap, Target, Users } from "lucide-react";
 
 const achievements = [
     {
+        timestamp: "2026.05",
+        level: "TOP 800",
+        levelClass: "badge-top800",
+        icon: Trophy,
+        title: "Meta PyTorch OpenEnv Hackathon India '26",
+        description:
+            "Ranked in the top 800 out of 31,000+ teams at the national-level Meta PyTorch OpenEnv Hackathon — organized by Scaler School of Technology in collaboration with Meta, Hugging Face, and the PyTorch Foundation.",
+    },
+    {
         timestamp: "2025.02",
         level: "LEAD",
         icon: Users,
@@ -118,7 +127,10 @@ export default function AchievementsPage() {
                                         <span className="font-mono text-[11px] text-zinc-600 tracking-wider">
                                             {achievement.timestamp}
                                         </span>
-                                        <span className="font-mono text-[10px] bg-zinc-900 border border-zinc-800/50 rounded px-2 py-0.5 tracking-widest" style={{ color: '#C5A455' }}>
+                                        <span
+                                            className={`font-mono text-[10px] bg-zinc-900 border border-zinc-800/50 rounded px-2 py-0.5 tracking-widest ${achievement.levelClass === 'badge-top800' ? 'badge-top800' : ''}`}
+                                            style={achievement.levelClass === 'badge-top800' ? { color: '#a855f7', backgroundColor: 'rgba(168,85,247,0.15)' } : { color: '#C5A455' }}
+                                        >
                                             [{achievement.level}]
                                         </span>
                                     </div>

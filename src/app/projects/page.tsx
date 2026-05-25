@@ -2,23 +2,44 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Flame } from "lucide-react";
 import ProjectCard from "@/components/project-card";
 
 const projects = [
+    {
+        title: "FirewatchEnv",
+        description:
+            "Autonomous SRE incident response system on a local KinD cluster. Fine-tuned Qwen2.5-14B with SFT + GRPO to detect and respond to production alerts. Co-trained a GraphSAGE GNN for service dependency mapping and cascading failure analysis. Built for Meta PyTorch OpenEnv Hackathon '26.",
+        tech: ["Python", "PyTorch", "Kubernetes", "GraphSAGE"],
+        span: "col-span-2",
+        status: "SHIPPED",
+        link: "https://github.com/sassycodes/firewatch_env",
+        icon: Flame,
+    },
     {
         title: "Imagine_OS",
         description:
             "AI text-to-video pipeline. Feed it a prompt, it storyboards through Gemini, renders video via Veo, all orchestrated with n8n. Built this in first semester.",
         tech: ["n8n", "Google Gemini", "Veo", "AI Agents"],
-        span: "col-span-2",
+        span: "col-span-1",
         status: "SHIPPED",
+        link: "https://github.com/sassycodes/Imagine_OS",
+    },
+    {
+        title: "TrustChain",
+        description:
+            "Digital verification platform that prevents criminals from escaping justice by claiming real evidence is an \"AI deepfake.\" Mathematically proves media authenticity, locks the proof in a digital vault, and generates legally binding reports.",
+        tech: ["React", "FastAPI", "AI", "Blockchain"],
+        span: "col-span-1",
+        status: "SHIPPED",
+        link: "https://github.com/sassycodes/Trust_Chain",
     },
     {
         title: "CogniTrust 2.0",
         description:
             "Deepfake audio detection with spectral analysis + neural classifiers. Generates blockchain-anchored certificates as proof. Built for real-world evidence workflows.",
         tech: ["Python", "PyTorch", "FastAPI", "Blockchain"],
-        span: "col-span-1",
+        span: "col-span-2",
         status: "v2.0",
     },
     {
@@ -28,14 +49,6 @@ const projects = [
         tech: ["C++", "Sockets", "Networking", "Cryptography"],
         span: "col-span-1",
         status: "IN DEV",
-    },
-    {
-        title: "TrustChain",
-        description:
-            "Digital verification platform that prevents criminals from escaping justice by claiming real evidence is an \"AI deepfake.\" Mathematically proves media authenticity, locks the proof in a digital vault, and generates legally binding reports.",
-        tech: ["React", "FastAPI", "AI", "Blockchain"],
-        span: "col-span-2",
-        status: "SHIPPED",
     },
 ];
 

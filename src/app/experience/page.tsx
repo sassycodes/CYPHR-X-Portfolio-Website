@@ -30,6 +30,61 @@ interface Experience {
 
 const experiences: Experience[] = [
     {
+        role: "Open Source Contributor",
+        company: "GSSoC 2026",
+        type: "Program",
+        period: "May 2026 — Present",
+        duration: "Ongoing",
+        location: "Remote",
+        mode: "Remote",
+        description:
+            "Selected as a contributor for GirlScript Summer of Code 2026. Contributing to open-source projects, shipping pull requests, and collaborating with maintainers across the OSS ecosystem.",
+        responsibilities: [
+            {
+                icon: Rocket,
+                label: "Contributions",
+                text: "Shipping code and fixes to open-source repositories through reviewed pull requests.",
+            },
+            {
+                icon: Users,
+                label: "Collaboration",
+                text: "Working with project maintainers and fellow contributors on real-world codebases.",
+            },
+        ],
+        tags: ["Open Source", "GSSoC", "Git", "Collaboration", "Community"],
+        status: "ACTIVE",
+    },
+    {
+        role: "Treasurer",
+        company: "IIIT Pune ACM Student Chapter",
+        type: "Full-time",
+        period: "Feb 2026 — Present",
+        duration: "4 mos",
+        location: "Pune, Maharashtra, India",
+        mode: "On-site",
+        description:
+            "Managing the financials for the college ACM chapter — making sure funding and resource allocation are sorted to execute high-quality technical events, hackathons, and coding sprints without roadblocks.",
+        responsibilities: [
+            {
+                icon: Briefcase,
+                label: "Budget Management",
+                text: "Managing the chapter's annual budget and tracking all cash flow end-to-end.",
+            },
+            {
+                icon: Megaphone,
+                label: "Sponsorships",
+                text: "Pitching to sponsors and handling funds for campus tech events and hackathons.",
+            },
+            {
+                icon: Users,
+                label: "Resource Allocation",
+                text: "Allocating resources for workshop materials and keeping financial records transparent and auditable.",
+            },
+        ],
+        tags: ["Finance", "Budgeting", "Sponsorships", "Event Ops", "Leadership"],
+        status: "ACTIVE",
+    },
+    {
         role: "GTM (Go-To-Marketing) & Operations",
         company: "Carter AI",
         type: "Internship",

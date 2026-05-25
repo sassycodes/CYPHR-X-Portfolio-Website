@@ -10,6 +10,8 @@ interface ProjectCardProps {
     tech: string[];
     status: string;
     span?: string;
+    link?: string;
+    icon?: React.ElementType;
 }
 
 export default function ProjectCard({
@@ -17,6 +19,8 @@ export default function ProjectCard({
     description,
     tech,
     status,
+    link,
+    icon: CustomIcon,
 }: ProjectCardProps) {
     const ref = useRef<HTMLDivElement>(null);
     const [rotateX, setRotateX] = useState(0);
@@ -44,7 +48,7 @@ export default function ProjectCard({
         setGlareY(50);
     };
 
-    return (
+    const card = (
         <motion.div
             ref={ref}
             onMouseMove={handleMouseMove}
@@ -66,7 +70,7 @@ export default function ProjectCard({
             {/* Header */}
             <div className="flex items-start justify-between mb-4 relative z-10">
                 <div className="flex items-center gap-2">
-                    <Terminal className="w-4 h-4 text-zinc-600" />
+                    {CustomIcon ? <CustomIcon className="w-4 h-4 text-zinc-600" /> : <Terminal className="w-4 h-4 text-zinc-600" />}
                     <span className="font-mono text-[10px] text-zinc-600 tracking-widest uppercase">
                         PROJECT
                     </span>
@@ -108,4 +112,14 @@ export default function ProjectCard({
             </div>
         </motion.div>
     );
+
+    if (link) {
+        return (
+            <a href={link} target="_blank" rel="noopener noreferrer" className="project-card-link h-full">
+                {card}
+            </a>
+        );
+    }
+
+    return card;
 }
