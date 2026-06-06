@@ -14,6 +14,7 @@ const tabs = [
     { name: "Experience", href: "/experience" },
     { name: "Achievements", href: "/achievements" },
     { name: "Academic Journey", href: "/academic" },
+    { name: "Blog", href: "/blog" },
 ];
 
 export default function Navbar() {

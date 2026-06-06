@@ -1,0 +1,72 @@
+---
+title: "Building FirewatchEnv: An Autonomous SRE System"
+date: "2026-06-01"
+summary: "How I fine-tuned Qwen2.5-14B and trained a GraphSAGE GNN to build an autonomous incident response system for Kubernetes — from concept to working prototype."
+tags: ["AI", "Kubernetes", "Systems", "PyTorch"]
+published: true
+---
+
+## The Problem
+
+Production incidents don't wait for office hours. When a service starts throwing 500s at 3 AM, the on-call engineer needs to context-switch from deep sleep to deep debugging in minutes. What if we could automate that first-response loop entirely?
+
+That's the question that led me to build **FirewatchEnv** — an autonomous SRE incident response system that runs on a local KinD (Kubernetes in Docker) cluster.
+
+## The Architecture
+
+The system has two core ML components working in tandem:
+
+### 1. Fine-tuned Qwen2.5-14B for Incident Response
+
+I started with the Qwen2.5-14B base model and fine-tuned it using a two-stage approach:
+
+- **SFT (Supervised Fine-Tuning)** — trained on curated incident-response pairs scraped from public postmortems and runbooks
+- **GRPO (Group Relative Policy Optimization)** — reinforcement learning stage to improve the model's ability to generate actionable remediation steps
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from trl import SFTTrainer, GRPOTrainer
+
+# Stage 1: SFT on incident-response pairs
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-14B")
+sft_trainer = SFTTrainer(
+    model=model,
+    train_dataset=incident_dataset,
+    max_seq_length=4096,
+)
+sft_trainer.train()
+
+# Stage 2: GRPO for response quality
+grpo_trainer = GRPOTrainer(
+    model=model,
+    reward_model=response_quality_scorer,
+    train_dataset=preference_dataset,
+)
+grpo_trainer.train()
+```
+
+### 2. GraphSAGE GNN for Dependency Mapping
+
+The second component is a **GraphSAGE** graph neural network that learns the service dependency topology of the cluster. When an incident hits, it can predict cascading failures before they happen.
+
+> The key insight: service dependencies aren't static. They shift with traffic patterns, deployments, and feature flags. A GNN that continuously learns the graph structure captures these dynamics in a way that static dependency maps never could.
+
+## What I Learned
+
+Building FirewatchEnv taught me several things:
+
+1. **Kubernetes is a rich RL environment** — the state space of a cluster (pod statuses, resource utilization, network metrics) maps naturally to an observation space
+2. **Fine-tuning beats prompting for domain tasks** — generic LLMs give generic advice; SFT + GRPO produced responses that were actually executable
+3. **Graph structure matters** — encoding service topology as a graph and learning over it with GNNs gave significantly better cascade prediction than flat feature vectors
+
+## What's Next
+
+The project was built for the **Meta PyTorch OpenEnv Hackathon '26**, but I'm continuing development. Next steps include:
+
+- Multi-cluster support with federated learning
+- Integration with PagerDuty and Slack for real alert ingestion
+- A web dashboard for visualizing the dependency graph in real-time
+
+---
+
+*If you're interested in the code, check it out on [GitHub](https://github.com/sassycodes/firewatch_env).*

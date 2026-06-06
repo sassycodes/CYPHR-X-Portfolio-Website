@@ -223,3 +223,67 @@ body {
   color: inherit;
   display: block;
 }
+
+/* ========================
+   BLOG PROSE TYPOGRAPHY
+   ======================== */
+.blog-prose {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.75;
+}
+
+/* rehype-pretty-code: code block container */
+.blog-code-block {
+  position: relative;
+}
+
+.blog-code-block code {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #adbac7;
+}
+
+/* rehype-pretty-code: line highlighting */
+.blog-code-block code [data-highlighted-line] {
+  background: rgba(16, 185, 129, 0.08);
+  border-left: 2px solid rgba(16, 185, 129, 0.4);
+  margin-left: -21px;
+  margin-right: -21px;
+  padding-left: 19px;
+  padding-right: 21px;
+}
+
+/* rehype-pretty-code: word highlighting */
+.blog-code-block code [data-highlighted-chars] {
+  background: rgba(16, 185, 129, 0.15);
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+
+/* rehype-pretty-code: line numbers */
+.blog-code-block code [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1.5rem;
+  text-align: right;
+  color: #3d4451;
+  font-size: 12px;
+}
+
+.blog-code-block code {
+  counter-reset: line;
+}
+
+/* Blog post figure captions */
+.blog-prose figcaption {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: #52525b;
+  text-align: center;
+  margin-top: 8px;
+  letter-spacing: 0.05em;
+}
